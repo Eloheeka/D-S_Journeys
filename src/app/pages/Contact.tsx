@@ -27,7 +27,7 @@ export function Contact() {
               href="mailto:info@rwandacurated.com"
               className="text-[var(--ea-terracotta)] hover:underline"
             >
-              info@rwandacurated.com
+              info@D&S Journeys.com
             </a>
           </div>
 
