@@ -27,7 +27,7 @@ export function Navigation() {
               <div className="w-1 h-8 bg-[var(--ea-sage)]" />
             </div>
             <span className="text-2xl tracking-tight text-foreground">
-              Dasam <span className="font-light">Journeys</span>
+              D&S <span className="font-light">Journeys</span>
             </span>
           </Link>
 
