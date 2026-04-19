@@ -15,7 +15,7 @@ export function Footer() {
                 <div className="w-1 h-8 bg-[var(--ea-sage)]" />
               </div>
               <span className="text-2xl tracking-tight">
-                Dasam <span className="font-light">Journeys</span>
+                D&S <span className="font-light">Journeys</span>
               </span>
             </div>
             <p className="text-white/70 max-w-md">
@@ -58,7 +58,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-white/70">
                 <Mail size={18} className="mt-1 flex-shrink-0" />
-                <span>info@dasamjourneys.com</span>
+                <span>info@d&Sjourneys.com</span>
               </li>
               <li className="flex items-start gap-2 text-white/70">
                 <Phone size={18} className="mt-1 flex-shrink-0" />
