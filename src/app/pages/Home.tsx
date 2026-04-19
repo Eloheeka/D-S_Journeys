@@ -121,7 +121,7 @@ export function Home() {
       <section className="py-20 px-4 bg-secondary">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl mb-4">Why Dasam Journeys</h2>
+            <h2 className="text-4xl md:text-5xl mb-4">Why D&S Journeys</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               We create unforgettable experiences tailored to your dreams
             </p>
