@@ -30,7 +30,7 @@ export function About() {
           <h2 className="text-4xl mb-6">Our Story</h2>
           <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
             <p>
-              Dasam Journeys was born from a passion for East Africa's incredible wildlife,
+              D&S Journeys was born from a passion for East Africa's incredible wildlife,
               stunning landscapes, and rich cultures. Founded in 2015, we started with a
               simple mission: to share the magic of this remarkable region with travelers
               from around the world.
