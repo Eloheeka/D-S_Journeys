@@ -19,17 +19,54 @@ export function CustomTrips() {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
 
   const destinations = ["Rwanda", "Tanzania", "Kenya", "Uganda", "Zanzibar"];
+  const web3FormsAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    if (!web3FormsAccessKey) {
+      toast.error("Email service is not configured yet. Add VITE_WEB3FORMS_ACCESS_KEY to continue.");
+      setIsSubmitting(false);
+      return;
+    }
 
-    console.log("Form submitted:", data);
-    toast.success("Thank you! We'll be in touch within 24 hours to start planning your dream safari.");
-    reset();
-    setIsSubmitting(false);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: web3FormsAccessKey,
+          subject: `Custom trip request from ${data.fullName}`,
+          from_name: "D&S Journeys",
+          replyto: data.email,
+          fullName: data.fullName,
+          email: data.email,
+          phone: data.phone || "Not provided",
+          travelDates: data.travelDates,
+          groupSize: data.groupSize,
+          destinations: data.destinations.join(", "),
+          budget: data.budget || "Not provided",
+          message: data.message || "No additional details provided.",
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Unable to send your request right now.");
+      }
+
+      toast.success("Thank you! Your custom trip request has been sent successfully.");
+      reset();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Unable to send your request right now.";
+      toast.error(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
