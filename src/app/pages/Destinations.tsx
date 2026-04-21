@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import sunsetHero from "../../assets/images/sunset.jpg";
 
 export function Destinations() {
   const destinations = [
@@ -43,8 +44,12 @@ export function Destinations() {
   return (
     <div className="pt-20">
       {/* Hero */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[var(--ea-terracotta)]" />
+      <section className="relative h-[65vh] min-h-[520px] flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${sunsetHero})` }}
+        />
+        <div className="absolute inset-0 bg-black/35" />
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="text-5xl md:text-6xl mb-4">Destinations</h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto font-light">
