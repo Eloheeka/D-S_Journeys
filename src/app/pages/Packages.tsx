@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { Clock, MapPin, Users, ArrowRight } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import safariHero from "../../assets/images/safari1.jpg";
 
 export function Packages() {
   const packages = [
@@ -119,7 +120,11 @@ export function Packages() {
     <div className="pt-20">
       {/* Hero */}
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[var(--ea-sage)]" />
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${safariHero})` }}
+        />
+        <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="text-5xl md:text-6xl mb-4">Safari Packages</h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto font-light">
