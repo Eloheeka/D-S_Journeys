@@ -8,8 +8,8 @@ export function Navigation() {
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/destinations", label: "Destinations" },
-    { to: "/packages", label: "Safari Packages" },
-    { to: "/custom-trips", label: "Custom Trips" },
+    { to: "/packages", label: "Packages" },
+    { to: "/custom-trips", label: "Plan This Trip" },
     { to: "/about", label: "About Us" },
     { to: "/travel-guide", label: "Travel Guide" },
     { to: "/contact", label: "Contact" },
