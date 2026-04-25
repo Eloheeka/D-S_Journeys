@@ -1,23 +1,22 @@
 import { Mail, Phone, MapPin } from "lucide-react";
+import { Reveal, StaggerGroup, StaggerItem } from "../components/animations";
 
 export function Contact() {
   return (
     <div className="pt-20">
-      {/* Hero */}
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-foreground" />
-        <div className="relative z-10 text-center text-white px-4">
+        <Reveal className="relative z-10 text-center text-white px-4">
           <h1 className="text-5xl md:text-6xl mb-4">Contact Us</h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto font-light">
-            We're here to answer your questions and help plan your adventure
+            We're here to answer your questions and help plan your adventure!
           </p>
-        </div>
+        </Reveal>
       </section>
 
-      {/* Contact Information */}
       <section className="py-20 px-4 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
-          <div className="text-center">
+        <StaggerGroup className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+          <StaggerItem className="interactive-card text-center bg-card px-6 py-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--ea-terracotta)]/10 text-[var(--ea-terracotta)] mb-4 rounded-full">
               <Mail size={28} />
             </div>
@@ -29,9 +28,9 @@ export function Contact() {
             >
               info@D&S Journeys.com
             </a>
-          </div>
+          </StaggerItem>
 
-          <div className="text-center">
+          <StaggerItem className="interactive-card text-center bg-card px-6 py-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--ea-sage)]/10 text-[var(--ea-sage)] mb-4 rounded-full">
               <Phone size={28} />
             </div>
@@ -50,9 +49,9 @@ export function Contact() {
             >
               +1 (555) 123-4567
             </a>
-          </div>
+          </StaggerItem>
 
-          <div className="text-center">
+          <StaggerItem className="interactive-card text-center bg-card px-6 py-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--ea-golden)]/20 text-[var(--ea-golden)] mb-4 rounded-full">
               <MapPin size={28} />
             </div>
@@ -64,11 +63,10 @@ export function Contact() {
               <br />
               East Africa
             </p>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerGroup>
 
-        {/* FAQ Section */}
-        <div className="max-w-3xl mx-auto">
+        <Reveal className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl mb-12 text-center">
             Frequently Asked Questions
           </h2>
@@ -133,7 +131,7 @@ export function Contact() {
               </p>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
     </div>
   );
