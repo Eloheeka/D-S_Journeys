@@ -1,29 +1,27 @@
 import { FileText, CreditCard, Shield, Plane, Camera, Heart } from "lucide-react";
 import travelHero from "../../assets/images/travel.jpg";
+import { Reveal, StaggerGroup, StaggerItem } from "../components/animations";
 
 export function TravelGuide() {
   return (
     <div className="pt-20">
-      {/* Hero */}
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${travelHero})` }}
         />
         <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 text-center text-white px-4">
+        <Reveal className="relative z-10 text-center text-white px-4">
           <h1 className="text-5xl md:text-6xl mb-4">Travel Guide</h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto font-light">
             Everything you need to know before your East African adventure
           </p>
-        </div>
+        </Reveal>
       </section>
 
-      {/* Guide Content */}
       <section className="py-20 px-4 max-w-5xl mx-auto">
-        <div className="space-y-16">
-          {/* Visa & Documentation */}
-          <div>
+        <StaggerGroup className="space-y-16">
+          <StaggerItem>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-[var(--ea-terracotta)]/10 text-[var(--ea-terracotta)] rounded-full flex items-center justify-center">
                 <FileText size={24} />
@@ -55,10 +53,9 @@ export function TravelGuide() {
                 least 6 months beyond your intended departure date with at least 2 blank pages.
               </p>
             </div>
-          </div>
+          </StaggerItem>
 
-          {/* Health & Vaccinations */}
-          <div>
+          <StaggerItem>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-[var(--ea-sage)]/10 text-[var(--ea-sage)] rounded-full flex items-center justify-center">
                 <Heart size={24} />
@@ -86,10 +83,9 @@ export function TravelGuide() {
                 recommended to cover medical emergencies, evacuation, and trip cancellation.
               </p>
             </div>
-          </div>
+          </StaggerItem>
 
-          {/* Money & Costs */}
-          <div>
+          <StaggerItem>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-[var(--ea-golden)]/20 text-[var(--ea-golden)] rounded-full flex items-center justify-center">
                 <CreditCard size={24} />
@@ -116,10 +112,9 @@ export function TravelGuide() {
                 10% if not included.
               </p>
             </div>
-          </div>
+          </StaggerItem>
 
-          {/* What to Pack */}
-          <div>
+          <StaggerItem>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-[var(--ea-terracotta)]/10 text-[var(--ea-terracotta)] rounded-full flex items-center justify-center">
                 <Plane size={24} />
@@ -151,10 +146,9 @@ export function TravelGuide() {
                 </ul>
               </div>
             </div>
-          </div>
+          </StaggerItem>
 
-          {/* Photography Tips */}
-          <div>
+          <StaggerItem>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-[var(--ea-sage)]/10 text-[var(--ea-sage)] rounded-full flex items-center justify-center">
                 <Camera size={24} />
@@ -183,10 +177,9 @@ export function TravelGuide() {
                 photo fee.
               </p>
             </div>
-          </div>
+          </StaggerItem>
 
-          {/* Safety & Etiquette */}
-          <div>
+          <StaggerItem>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-[var(--ea-golden)]/20 text-[var(--ea-golden)] rounded-full flex items-center justify-center">
                 <Shield size={24} />
@@ -208,7 +201,7 @@ export function TravelGuide() {
               <p>
                 <strong className="text-foreground">Cultural Respect:</strong> Dress modestly,
                 especially in rural areas and Muslim regions like Zanzibar. Learn a few words
-                in Swahili—locals appreciate the effort.
+                in Swahili, locals appreciate the effort.
               </p>
               <p>
                 <strong className="text-foreground">Environment:</strong> Practice
@@ -216,12 +209,11 @@ export function TravelGuide() {
                 plastics (banned in Rwanda and Kenya).
               </p>
             </div>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerGroup>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 px-4 bg-secondary">
+      <Reveal className="py-20 px-4 bg-secondary">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl mb-6">Have More Questions?</h2>
           <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
@@ -229,12 +221,12 @@ export function TravelGuide() {
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center justify-center px-8 py-4 bg-[var(--ea-terracotta)] text-white hover:bg-[var(--ea-terracotta)]/90 transition-colors"
+            className="interactive-button inline-flex items-center justify-center px-8 py-4 bg-[var(--ea-terracotta)] text-white hover:bg-[var(--ea-terracotta)]/90 transition-colors"
           >
             Contact Us
           </a>
         </div>
-      </section>
+      </Reveal>
     </div>
   );
 }
