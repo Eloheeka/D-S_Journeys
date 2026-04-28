@@ -3,6 +3,7 @@ import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Reveal, StaggerGroup, StaggerItem } from "../components/animations";
 import { destinations, multiCountryPackages } from "../data/travel";
+import landingPageImage from "../../assets/images/landingPageImage.png";
 
 export function Home() {
   const featuredDestinations = destinations.slice(0, 5);
@@ -30,8 +31,8 @@ export function Home() {
       <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1617198920209-220e1e8a652e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwc2FmYXJpJTIwd2lsZGxpZmUlMjBlbGVwaGFudHN8ZW58MXx8fHwxNzc0NzI5MjI1fDA&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="African safari elephants"
+            src={landingPageImage}
+            alt="African safari"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70" />
