@@ -8,10 +8,10 @@ export function Navigation() {
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/destinations", label: "Destinations" },
-    { to: "/packages", label: "Packages" },
+    { to: "/packages", label: "Tours & Safaris" },
     { to: "/custom-trips", label: "Plan This Trip" },
     { to: "/about", label: "About Us" },
-    { to: "/travel-guide", label: "Travel Guide" },
+    { to: "/travel-guide", label: "Travel Tips & Info" },
     { to: "/contact", label: "Contact" },
   ];
 
@@ -22,9 +22,9 @@ export function Navigation() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <div className="flex items-center gap-1">
-              <div className="w-1 h-8 bg-[var(--ea-terracotta)]" />
-              <div className="w-1 h-8 bg-[var(--ea-golden)]" />
-              <div className="w-1 h-8 bg-[var(--ea-sage)]" />
+              <div className="w-1 h-8 bg-[#20A0D6]" />
+              <div className="w-1 h-8 bg-[#FAD201]" />
+              <div className="w-1 h-8 bg-[#20603D]" />
             </div>
             <span className="text-2xl tracking-tight text-foreground">
               D&S <span className="font-light">Journeys</span>
