@@ -1,133 +1,104 @@
 import { Link } from "react-router";
-import { ArrowRight, Compass, MapPinned } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Reveal, StaggerGroup, StaggerItem } from "../components/animations";
 import { destinations } from "../data/travel";
-import sunsetHero from "../../assets/images/sunset.jpg";
+import destinationsHero from "../../assets/images/destiantions.jpg";
+
+// Per-country local images
+import rwandaImg from "../../assets/images/rwanda.jpg";
+import uganda2Img from "../../assets/images/uganda2.jpg";
+import kenya2Img from "../../assets/images/kenya2.jpg";
+import tanzania2Img from "../../assets/images/tanzania2.jpg";
+import zanzibar2Img from "../../assets/images/zanzibar2.jpg";
+
+const countryImages: Record<string, string> = {
+  rwanda: rwandaImg,
+  uganda: uganda2Img,
+  kenya: kenya2Img,
+  tanzania: tanzania2Img,
+  zanzibar: zanzibar2Img,
+};
 
 export function Destinations() {
   return (
     <div className="pt-20">
-      <section className="relative h-[65vh] min-h-[520px] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${sunsetHero})` }}
-        />
-        <div className="absolute inset-0 bg-black/40" />
+      {/* Hero */}
+      <section className="relative h-[60vh] min-h-[480px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${destinationsHero})` }} />
+        <div className="absolute inset-0 bg-black/45" />
         <Reveal className="relative z-10 text-center text-white px-4">
-          <p className="uppercase tracking-[0.3em] text-sm text-white/75 mb-4">
-            Explore by Country
-          </p>
+          <p className="uppercase tracking-[0.3em] text-sm text-white/75 mb-4">Explore by Country</p>
           <h1 className="text-5xl md:text-6xl mb-4">Destinations</h1>
           <p className="text-xl text-white/90 max-w-3xl mx-auto font-light">
-            Start with the country that fits your style, then choose a short stay or a longer
-            tailor-made journey.
+            Five countries. One region. Each with its own wildlife, culture, and character. Choose where you want to go.
           </p>
         </Reveal>
       </section>
 
-      <Reveal className="py-16 px-4 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="interactive-card bg-secondary/75 p-6">
-            <Compass className="text-[var(--ea-terracotta)] mb-4" size={28} />
-            <h2 className="text-2xl mb-2">Destination-first flow</h2>
-            <p className="text-muted-foreground">
-              Every country now has a dedicated page with a clear introduction and featured
-              itinerary options.
-            </p>
-          </div>
-          <div className="interactive-card bg-secondary/75 p-6">
-            <MapPinned className="text-[var(--ea-terracotta)] mb-4" size={28} />
-            <h2 className="text-2xl mb-2">Flexible travel styles</h2>
-            <p className="text-muted-foreground">
-              Solo travelers, couples, and groups are all catered for with adaptable trip
-              pacing and accommodation options.
-            </p>
-          </div>
-          <div className="interactive-card bg-secondary/75 p-6">
-            <ArrowRight className="text-[var(--ea-terracotta)] mb-4" size={28} />
-            <h2 className="text-2xl mb-2">Easy next step</h2>
-            <p className="text-muted-foreground">
-              Each page leads naturally into a package view and a prefilled trip inquiry.
-            </p>
-          </div>
-        </div>
-      </Reveal>
-
-      <section className="pb-20 px-4 max-w-7xl mx-auto">
-        <StaggerGroup className="space-y-12">
+      {/* Country cards */}
+      <section className="py-20 px-4 max-w-7xl mx-auto">
+        <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {destinations.map((destination) => (
-            <StaggerItem
-              key={destination.slug}
-              className="interactive-card overflow-hidden border border-border bg-card"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]">
-                <div className="relative min-h-[320px]">
+            <StaggerItem key={destination.slug}>
+              <Link
+                to={`/destinations/${destination.slug}`}
+                className="interactive-card group block overflow-hidden rounded-3xl border border-border bg-card"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <ImageWithFallback
-                    src={destination.cardImage}
+                    src={countryImages[destination.slug] ?? destination.cardImage}
                     alt={destination.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover interactive-media"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  <div className="absolute left-6 bottom-6 text-white max-w-lg">
-                    <p className="text-sm uppercase tracking-[0.25em] text-white/75 mb-2">
-                      {destination.tagline}
-                    </p>
-                    <h2 className="text-4xl mb-3">{destination.name}</h2>
-                    <p className="text-white/85">{destination.intro}</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                  <div className="absolute left-5 bottom-5 text-white">
+                    <p className="text-xs uppercase tracking-[0.25em] text-white/65 mb-1">{destination.tagline}</p>
+                    <h2 className="text-3xl">{destination.name}</h2>
                   </div>
                 </div>
-
-                <div className="p-6 md:p-8">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                    {destination.packageOptions.map((pkg) => (
-                      <div key={pkg.slug} className="rounded-2xl border border-border bg-secondary/50 p-4">
-                        <p className="text-sm text-[var(--ea-terracotta)] mb-1">{pkg.style}</p>
-                        <h3 className="text-xl mb-1">{pkg.duration}</h3>
-                        <p className="text-sm text-muted-foreground">{pkg.startingPrice} starting price</p>
-                      </div>
+                <div className="p-5">
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{destination.intro}</p>
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {destination.highlights.slice(0, 2).map((h) => (
+                      <span key={h} className="rounded-full bg-secondary border border-border px-3 py-1 text-xs text-muted-foreground">
+                        {h}
+                      </span>
                     ))}
                   </div>
-
-                  <div className="mb-6">
-                    <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">
-                      Ideal For
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {destination.travelStyles.map((style) => (
-                        <span
-                          key={style}
-                          className="rounded-full border border-border px-3 py-1 text-sm text-muted-foreground"
-                        >
-                          {style}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <p className="text-muted-foreground mb-6">{destination.description}</p>
-
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <Link
-                      to={`/destinations/${destination.slug}`}
-                      className="interactive-button inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--ea-terracotta)] text-white hover:bg-[var(--ea-terracotta)]/90 transition-colors"
-                    >
-                      Explore {destination.name}
-                      <ArrowRight size={18} />
-                    </Link>
-                    <Link
-                      to={`/custom-trips?destination=${encodeURIComponent(destination.name)}`}
-                      className="interactive-button inline-flex items-center justify-center gap-2 px-6 py-3 border border-border hover:bg-secondary transition-colors"
-                    >
-                      Plan This Trip
-                    </Link>
-                  </div>
+                  <span className="inline-flex items-center gap-1.5 text-sm text-[var(--ea-terracotta)] group-hover:gap-3 transition-all">
+                    Explore {destination.name} <ArrowRight size={15} />
+                  </span>
                 </div>
-              </div>
+              </Link>
             </StaggerItem>
           ))}
         </StaggerGroup>
       </section>
+
+      {/* CTA */}
+      <Reveal className="py-20 px-4 bg-secondary">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl mb-4">Not Sure Where to Start?</h2>
+          <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
+            Tell us what kind of trip you have in mind and we will suggest the right destination and itinerary for you.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/custom-trips"
+              className="interactive-button inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--ea-terracotta)] text-white hover:bg-[var(--ea-terracotta)]/90 transition-colors"
+            >
+              Plan Your Trip <ArrowRight size={18} />
+            </Link>
+            <Link
+              to="/packages"
+              className="interactive-button inline-flex items-center justify-center gap-2 px-8 py-4 border border-border hover:bg-background transition-colors"
+            >
+              Browse All Safaris
+            </Link>
+          </div>
+        </div>
+      </Reveal>
     </div>
   );
 }
