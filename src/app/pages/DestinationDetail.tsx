@@ -381,35 +381,6 @@ export function DestinationDetail() {
                 </Link>
               </div>
 
-              {/* What's here */}
-              <div className="border border-border bg-card rounded-3xl p-6">
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">What's Here</p>
-                <div className="space-y-2">
-                  {sectionKeys.map((type) => (
-                    <div key={type} className="flex items-center justify-between text-sm">
-                      <span className="flex items-center gap-2 text-muted-foreground">
-                        {typeIcon(type, 14)}
-                        {SECTION_LABELS[type]}
-                      </span>
-                      <span className="text-xs font-medium text-foreground bg-secondary rounded-full px-2 py-0.5">
-                        {grouped[type].length}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Travel styles */}
-              <div className="border border-border bg-card rounded-3xl p-6">
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">Ideal For</p>
-                <div className="flex flex-wrap gap-2">
-                  {destination.travelStyles.map((style) => (
-                    <span key={style} className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
-                      {style}
-                    </span>
-                  ))}
-                </div>
-              </div>
             </div>
           </aside>
         </div>
