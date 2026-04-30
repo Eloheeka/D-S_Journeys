@@ -186,68 +186,7 @@ export function DestinationDetail() {
           {/* ── Left: all content ── */}
           <div className="space-y-20 min-w-0">
 
-            {/* Overview */}
-            <Reveal>
-              <p className="text-xs uppercase tracking-[0.25em] text-[var(--ea-terracotta)] mb-3">Overview</p>
-              <h2 className="text-4xl mb-6">Why {destination.name}?</h2>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-8">{destination.whyVisit}</p>
-
-              {/* Highlights grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {destination.highlights.map((h) => (
-                  <div key={h} className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4">
-                    <div className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-[var(--ea-terracotta)]/10 flex items-center justify-center">
-                      <Check size={13} className="text-[var(--ea-terracotta)]" />
-                    </div>
-                    <p className="text-muted-foreground text-sm">{h}</p>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-
-            {/* Attractions by section */}
-            {sectionKeys.map((type) => (
-              <section key={type}>
-                <Reveal>
-                  <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border">
-                    {typeIcon(type, 22)}
-                    <h2 className="text-3xl">{SECTION_LABELS[type]}</h2>
-                    <span className="ml-auto text-sm text-muted-foreground">
-                      {grouped[type].length} {grouped[type].length === 1 ? "entry" : "entries"}
-                    </span>
-                  </div>
-                </Reveal>
-                <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {grouped[type].map((attraction) => (
-                    <StaggerItem key={attraction.name}>
-                      <AttractionCard attraction={attraction} />
-                    </StaggerItem>
-                  ))}
-                </StaggerGroup>
-              </section>
-            ))}
-
-            {/* Travel styles */}
-            <Reveal>
-              <div className="rounded-3xl bg-secondary p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <Users className="text-[var(--ea-terracotta)]" size={22} />
-                  <h3 className="text-2xl">Who This Destination Suits</h3>
-                </div>
-                <p className="text-muted-foreground mb-5">
-                  All packages can be personalized around your pace, accommodation level, and group size.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {destination.travelStyles.map((style) => (
-                    <span key={style} className="rounded-full bg-background border border-border px-4 py-2 text-sm">
-                      {style}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Packages */}
+            {/* ── Packages FIRST ── */}
             <section>
               <Reveal className="mb-10">
                 <p className="text-xs uppercase tracking-[0.3em] text-[var(--ea-terracotta)] mb-3">Safaris & Tours</p>
@@ -264,7 +203,6 @@ export function DestinationDetail() {
                     className="interactive-card overflow-hidden border border-border bg-card"
                   >
                     <div className="p-6 md:p-8">
-                      {/* Header */}
                       <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
                         <div>
                           <p className="text-xs uppercase tracking-[0.25em] text-[var(--ea-terracotta)] mb-2">{pkg.style}</p>
@@ -277,7 +215,6 @@ export function DestinationDetail() {
                         </div>
                       </div>
 
-                      {/* Meta */}
                       <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-8">
                         <span className="inline-flex items-center gap-2">
                           <Clock size={15} className="text-[var(--ea-terracotta)]" /> {pkg.duration}
@@ -287,7 +224,6 @@ export function DestinationDetail() {
                         </span>
                       </div>
 
-                      {/* Itinerary + includes/excludes */}
                       <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 mb-8">
                         <div>
                           <h4 className="text-lg mb-4">Day-by-Day Outline</h4>
@@ -344,6 +280,66 @@ export function DestinationDetail() {
                 ))}
               </StaggerGroup>
             </section>
+
+            {/* ── Overview ── */}
+            <Reveal>
+              <p className="text-xs uppercase tracking-[0.25em] text-[var(--ea-terracotta)] mb-3">Overview</p>
+              <h2 className="text-4xl mb-6">Why {destination.name}?</h2>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-8">{destination.whyVisit}</p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {destination.highlights.map((h) => (
+                  <div key={h} className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4">
+                    <div className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-[var(--ea-terracotta)]/10 flex items-center justify-center">
+                      <Check size={13} className="text-[var(--ea-terracotta)]" />
+                    </div>
+                    <p className="text-muted-foreground text-sm">{h}</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+
+            {/* ── Attractions by section ── */}
+            {sectionKeys.map((type) => (
+              <section key={type}>
+                <Reveal>
+                  <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border">
+                    {typeIcon(type, 22)}
+                    <h2 className="text-3xl">{SECTION_LABELS[type]}</h2>
+                    <span className="ml-auto text-sm text-muted-foreground">
+                      {grouped[type].length} {grouped[type].length === 1 ? "entry" : "entries"}
+                    </span>
+                  </div>
+                </Reveal>
+                <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {grouped[type].map((attraction) => (
+                    <StaggerItem key={attraction.name}>
+                      <AttractionCard attraction={attraction} />
+                    </StaggerItem>
+                  ))}
+                </StaggerGroup>
+              </section>
+            ))}
+
+            {/* ── Travel styles ── */}
+            <Reveal>
+              <div className="rounded-3xl bg-secondary p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <Users className="text-[var(--ea-terracotta)]" size={22} />
+                  <h3 className="text-2xl">Who This Destination Suits</h3>
+                </div>
+                <p className="text-muted-foreground mb-5">
+                  All packages can be personalized around your pace, accommodation level, and group size.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {destination.travelStyles.map((style) => (
+                    <span key={style} className="rounded-full bg-background border border-border px-4 py-2 text-sm">
+                      {style}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
           </div>
 
           {/* ── Right: sticky sidebar ── */}
