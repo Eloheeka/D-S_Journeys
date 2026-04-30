@@ -1,12 +1,25 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Reveal, StaggerGroup, StaggerItem } from "../components/animations";
+import {
+  Carousel,
+  type CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../components/ui/carousel";
 import { destinations, multiCountryPackages } from "../data/travel";
-import landingPageImage from "../../assets/images/landingPageImage.png";
 
 export function Home() {
-  const featuredDestinations = destinations.slice(0, 5);
+  const [heroCarousel, setHeroCarousel] = useState<CarouselApi>();
+  const featuredDestinations = [...destinations].sort((a, b) => {
+    if (a.slug === "rwanda") return -1;
+    if (b.slug === "rwanda") return 1;
+    return 0;
+  });
 
   const features = [
     {
@@ -26,41 +39,83 @@ export function Home() {
     },
   ];
 
+  useEffect(() => {
+    if (!heroCarousel) return;
+
+    const interval = window.setInterval(() => {
+      heroCarousel.scrollNext();
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, [heroCarousel]);
+
   return (
     <div className="pt-20">
-      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <ImageWithFallback
-            src={landingPageImage}
-            alt="African safari"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70" />
-        </div>
+      <section className="relative overflow-hidden">
+        <Carousel
+          setApi={setHeroCarousel}
+          opts={{
+            align: "center",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="ml-0">
+            {featuredDestinations.map((destination) => (
+              <CarouselItem
+                key={destination.slug}
+                className="pl-0 basis-full"
+              >
+                <div className="relative min-h-[calc(100vh-5rem)] overflow-hidden">
+                  <ImageWithFallback
+                    src={destination.heroImage}
+                    alt={destination.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-black/10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/15" />
 
-        <Reveal className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
-          <p className="uppercase tracking-[0.32em] text-sm text-white/75 mb-4">East Africa, Made Easy</p>
-          <h1 className="text-5xl md:text-7xl mb-6 tracking-tight">Choose a destination. Pick a package. Plan your trip.</h1>
-          <p className="text-xl md:text-2xl mb-10 text-white/90 max-w-3xl mx-auto font-light">
-            Clear country pages, flexible packages, and smooth inquiry flow for safari and beach
-            trips across East Africa.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/destinations"
-              className="interactive-button inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white hover:bg-primary/90 transition-colors"
-            >
-              Explore Destinations
-              <ArrowRight size={20} />
-            </Link>
-            <Link
-              to="/packages"
-              className="interactive-button inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-foreground hover:bg-white/90 transition-colors"
-            >
-              View Packages
-            </Link>
-          </div>
-        </Reveal>
+                  <div className="relative z-10 min-h-[calc(100vh-5rem)] flex items-end">
+                    <Reveal className="w-full max-w-7xl mx-auto px-4 pb-16 md:pb-20 text-white">
+                      <p className="uppercase tracking-[0.32em] text-sm text-white/75 mb-4">East Africa, Made Easy</p>
+                      <h1 className="text-6xl md:text-8xl mb-5 tracking-tight">{destination.name}</h1>
+                      <p className="text-sm uppercase tracking-[0.26em] text-white/65 mb-4">{destination.tagline}</p>
+                      <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-2xl font-light">
+                        {destination.intro}
+                      </p>
+
+                      <div className="flex gap-2 flex-wrap mb-8">
+                        {destination.packageOptions.map((pkg) => (
+                          <span key={pkg.slug} className="rounded-full bg-white/15 border border-white/20 px-4 py-2 text-sm text-white/90">
+                            {pkg.duration}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <Link
+                          to={`/destinations/${destination.slug}`}
+                          className="interactive-button inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white hover:bg-primary/90 transition-colors"
+                        >
+                          Explore {destination.name}
+                          <ArrowRight size={20} />
+                        </Link>
+                        <Link
+                          to="/packages"
+                          className="interactive-button inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-foreground hover:bg-white/90 transition-colors"
+                        >
+                          View Packages
+                        </Link>
+                      </div>
+                    </Reveal>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-auto right-20 top-auto bottom-8 bg-white/15 border-white/20 text-white hover:bg-white/25" />
+          <CarouselNext className="right-8 top-auto bottom-8 bg-white/15 border-white/20 text-white hover:bg-white/25" />
+        </Carousel>
       </section>
 
       <Reveal className="py-16 px-4 max-w-7xl mx-auto">
@@ -88,51 +143,6 @@ export function Home() {
             </div>
           </div>
         </div>
-      </Reveal>
-
-      <Reveal className="py-20 px-4 max-w-7xl mx-auto">
-        <div className="text-center mb-14">
-          <p className="text-sm uppercase tracking-[0.3em] text-[var(--ea-terracotta)] mb-3">
-            Start With The Destination
-          </p>
-          <h2 className="text-4xl md:text-5xl mb-4">Country Pages With Clear Options</h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Each page introduces the country, highlights traveler types, and presents a short stay
-            and longer experience.
-          </p>
-        </div>
-
-        <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6">
-          {featuredDestinations.map((destination) => (
-            <StaggerItem key={destination.slug}>
-              <Link
-                to={`/destinations/${destination.slug}`}
-                className="interactive-card group relative overflow-hidden bg-card aspect-[3/4] block"
-              >
-                <ImageWithFallback
-                  src={destination.cardImage}
-                  alt={destination.name}
-                  className="interactive-media w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                  <p className="text-xs uppercase tracking-[0.2em] text-white/70 mb-2">
-                    {destination.tagline}
-                  </p>
-                  <h3 className="text-2xl mb-2">{destination.name}</h3>
-                  <p className="text-white/80 text-sm mb-4">{destination.intro}</p>
-                  <div className="flex gap-2 flex-wrap">
-                    {destination.packageOptions.map((pkg) => (
-                      <span key={pkg.slug} className="rounded-full bg-white/15 px-3 py-1 text-xs">
-                        {pkg.duration}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
       </Reveal>
 
       <Reveal className="py-20 px-4 bg-secondary">
