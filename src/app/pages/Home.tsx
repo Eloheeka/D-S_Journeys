@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Reveal, StaggerGroup, StaggerItem } from "../components/animations";
 import {
@@ -15,6 +16,8 @@ import { destinations, multiCountryPackages } from "../data/travel";
 
 export function Home() {
   const [heroCarousel, setHeroCarousel] = useState<CarouselApi>();
+  const whatsappHref =
+    "https://wa.me/250793547972?text=Hello%2C%20I%27d%20like%20to%20plan%20a%20trip%20with%20D%26S%20Journeys.";
   const featuredDestinations = [...destinations].sort((a, b) => {
     if (a.slug === "rwanda") return -1;
     if (b.slug === "rwanda") return 1;
@@ -51,6 +54,16 @@ export function Home() {
 
   return (
     <div className="pt-20">
+      <a
+        href={whatsappHref}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Chat with us on WhatsApp"
+        className="interactive-button fixed bottom-5 right-5 z-50 inline-flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/20 transition-transform hover:scale-105 hover:bg-[#1ebe5d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
+      >
+        <WhatsAppIcon fontSize="medium" />
+      </a>
+
       <section className="relative overflow-hidden">
         <Carousel
           setApi={setHeroCarousel}
