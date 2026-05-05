@@ -12,6 +12,7 @@ export function Navigation() {
     { to: "/custom-trips", label: "Plan This Trip" },
     { to: "/about", label: "About Us" },
     { to: "/travel-guide", label: "Travel Tips & Info" },
+    { to: "/faqs", label: "FAQs" },
     { to: "/contact", label: "Contact" },
   ];
 
@@ -32,14 +33,14 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-5 xl:gap-8">
             {navLinks.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 end={link.to === "/"}
                 className={({ isActive }) =>
-                  `text-sm transition-colors ${
+                  `text-xs xl:text-sm transition-colors ${
                     isActive
                       ? "text-[var(--ea-terracotta)]"
                       : "text-foreground/70 hover:text-foreground"

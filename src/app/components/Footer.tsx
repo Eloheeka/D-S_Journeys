@@ -49,6 +49,11 @@ export function Footer() {
                   Travel Guide
                 </Link>
               </li>
+              <li>
+                <Link to="/faqs" className="text-white/70 hover:text-white transition-colors">
+                  FAQs
+                </Link>
+              </li>
             </ul>
           </div>
 
