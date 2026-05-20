@@ -91,21 +91,37 @@ function FAQSection({
   return (
     <section id={id}>
       <Reveal>
-        <p className="text-xs uppercase tracking-[0.2em] text-[var(--ea-terracotta)] mb-3">
+        <p
+          className="text-xs uppercase tracking-[0.25em] text-[var(--ea-bronze)] mb-3"
+          style={{ fontFamily: "'DM Sans', sans-serif" }}
+        >
           {eyebrow}
         </p>
-        <h2 className="text-3xl md:text-4xl mb-4">{title}</h2>
-        <p className="text-muted-foreground text-lg max-w-3xl">{description}</p>
+        <h2
+          className="mb-4 leading-tight"
+          style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 3vw, 2.4rem)", fontWeight: 500 }}
+        >
+          {title}
+        </h2>
+        <p className="text-muted-foreground text-base max-w-3xl" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+          {description}
+        </p>
       </Reveal>
 
       <Reveal className="mt-8 rounded-2xl border border-border bg-card px-5 sm:px-8">
         <Accordion type="single" collapsible className="w-full">
           {faqs.map((faq, index) => (
             <AccordionItem key={faq.question} value={`${id}-${index}`}>
-              <AccordionTrigger className="py-6 text-base sm:text-lg hover:no-underline">
+              <AccordionTrigger
+                className="py-6 text-base sm:text-lg hover:no-underline text-left"
+                style={{ fontFamily: "'Playfair Display', serif", fontWeight: 500 }}
+              >
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground leading-relaxed sm:text-base">
+              <AccordionContent
+                className="text-muted-foreground leading-relaxed sm:text-base"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
@@ -119,19 +135,33 @@ function FAQSection({
 export function FAQs() {
   return (
     <div className="pt-20">
-      <section className="relative h-[54vh] min-h-[430px] flex items-center justify-center overflow-hidden">
+      {/* Hero */}
+      <section className="relative h-[55vh] min-h-[440px] flex items-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${rwandaHero})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/70" />
-        <Reveal className="relative z-10 text-center text-white px-4">
-          <p className="uppercase tracking-[0.3em] text-sm text-white/75 mb-4">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+        <Reveal className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 pb-16 text-white">
+          <p
+            className="text-[var(--ea-gold)] text-xs tracking-[0.3em] uppercase mb-4"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
             Travel Answers
           </p>
-          <h1 className="text-5xl md:text-6xl mb-4">FAQs</h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto font-light">
-            Clear answers for East Africa travel, with a dedicated guide to Rwanda safari planning.
+          <h1
+            className="mb-4 leading-tight max-w-3xl"
+            style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.4rem, 5vw, 4.2rem)", fontWeight: 500 }}
+          >
+            Questions, clearly{" "}
+            <span style={{ fontStyle: "italic", fontWeight: 400 }}>answered.</span>
+          </h1>
+          <p
+            className="text-white/70 max-w-xl leading-relaxed"
+            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 300 }}
+          >
+            Everything you need to know about planning a safari across East Africa — and Rwanda in particular.
           </p>
         </Reveal>
       </section>
@@ -197,15 +227,28 @@ export function FAQs() {
         />
       </div>
 
-      <Reveal className="py-20 px-4 bg-primary text-white">
+      <Reveal className="py-20 px-4 bg-[var(--ea-night)] text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl mb-4">Still Choosing Your Route?</h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-light">
-            Tell us your dates, budget, and must-see experiences, and we will shape a safari around them.
+          <p
+            className="text-[var(--ea-gold)] text-xs tracking-[0.3em] uppercase mb-5"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
+            Still Choosing Your Route?
+          </p>
+          <h2
+            className="mb-5 leading-tight"
+            style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 500 }}
+          >
+            Let us shape the{" "}
+            <span style={{ fontStyle: "italic", fontWeight: 400 }}>perfect itinerary.</span>
+          </h2>
+          <p className="text-white/65 mb-8 max-w-2xl mx-auto" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            Tell us your dates, budget, and must-see experiences — we will build a safari around them.
           </p>
           <Link
             to="/custom-trips"
-            className="interactive-button inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary hover:bg-white/90 transition-colors"
+            className="interactive-button inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--ea-gold)] text-[var(--ea-night)] hover:bg-[var(--ea-bronze)] hover:text-white transition-colors text-sm font-semibold"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             Plan This Trip <ArrowRight size={18} />
           </Link>

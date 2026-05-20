@@ -12,6 +12,7 @@ export function Navigation() {
     { to: "/custom-trips", label: "Plan a Trip" },
     { to: "/about", label: "About" },
     { to: "/travel-guide", label: "Travel Tips" },
+    { to: "/faqs", label: "FAQs" },
     { to: "/contact", label: "Contact" },
   ];
 
@@ -31,7 +32,7 @@ export function Navigation() {
               className="text-[1.35rem] tracking-[-0.01em] text-foreground"
               style={{ fontFamily: "'Playfair Display', serif", fontWeight: 500 }}
             >
-              Dasam <span style={{ fontWeight: 400, fontStyle: "italic" }}>Journeys</span>
+              DS Tours <span style={{ fontWeight: 400, fontStyle: "italic" }}>Africa</span>
             </span>
           </Link>
 

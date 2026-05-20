@@ -218,7 +218,7 @@ export function Home() {
                 Private East African Safaris
               </p>
               <h1
-                className="text-white mb-6 leading-[1.05]"
+                className="text-white mb-4 leading-[1.05]"
                 style={{
                   fontFamily: "'Playfair Display', serif",
                   fontSize: "clamp(2.8rem, 6vw, 5.5rem)",
@@ -230,6 +230,12 @@ export function Home() {
                 ,<br />
                 we answer.
               </h1>
+              <p
+                className="text-white/50 mb-6 tracking-[0.18em] uppercase text-xs"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                Discover Africa Beyond the Ordinary
+              </p>
               <p
                 className="text-white/75 mb-10 max-w-lg leading-relaxed"
                 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.1rem", fontWeight: 300 }}
@@ -443,7 +449,7 @@ export function Home() {
                 className="text-[var(--ea-bronze)] text-xs tracking-[0.28em] uppercase mb-4"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
               >
-                Why Dasam Journeys
+                Why DS Tours Africa
               </p>
               <h2
                 className="leading-tight mb-5"

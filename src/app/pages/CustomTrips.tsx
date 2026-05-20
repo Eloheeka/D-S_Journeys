@@ -74,7 +74,7 @@ export function CustomTrips() {
         body: JSON.stringify({
           access_key: web3FormsAccessKey,
           subject: `Custom trip request from ${data.fullName}`,
-          from_name: "D&S Journeys",
+          from_name: "DS Tours Africa",
           replyto: data.email,
           fullName: data.fullName,
           email: data.email,
@@ -116,26 +116,53 @@ export function CustomTrips() {
 
   return (
     <div className="pt-20">
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[55vh] min-h-[440px] flex items-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${customTripsHero})` }}
         />
-        <div className="absolute inset-0 bg-black/35" />
-        <Reveal className="relative z-10 text-center text-white px-4">
-          <h1 className="text-5xl md:text-6xl mb-4">Plan This Trip</h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto font-light">
-            Share your preferred destination or package, and we will shape it around you
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+        <Reveal className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 pb-16 text-white">
+          <p
+            className="text-[var(--ea-gold)] text-xs tracking-[0.3em] uppercase mb-4"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
+            Tailor-Made Journeys
+          </p>
+          <h1
+            className="mb-4 leading-tight max-w-3xl"
+            style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.4rem, 5vw, 4.2rem)", fontWeight: 500 }}
+          >
+            Your Africa,{" "}
+            <span style={{ fontStyle: "italic", fontWeight: 400 }}>your way.</span>
+          </h1>
+          <p
+            className="text-white/70 max-w-xl leading-relaxed"
+            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 300 }}
+          >
+            Share your destination, dates, and travel style — we will shape the rest into a private itinerary built around you.
           </p>
         </Reveal>
       </section>
 
       <Reveal className="py-20 px-4 max-w-4xl mx-auto">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl mb-4">Tell Us What You Like</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Whether you are starting from a country page or a sample package, this form helps us
-            turn that inspiration into a personalized East Africa itinerary.
+          <p
+            className="text-[var(--ea-bronze)] text-xs tracking-[0.28em] uppercase mb-4"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
+            Custom Itinerary Request
+          </p>
+          <h2
+            className="mb-4 leading-tight"
+            style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", fontWeight: 500 }}
+          >
+            Tell us what you{" "}
+            <span style={{ fontStyle: "italic", fontWeight: 400 }}>have in mind.</span>
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            Whether you are starting from a country page or a sample package, this form helps us turn that inspiration into a personalized East Africa itinerary.
           </p>
         </div>
 
@@ -347,32 +374,46 @@ export function CustomTrips() {
 
       <Reveal className="py-20 px-4 bg-secondary">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl mb-8 text-center">What Happens Next?</h2>
+          <div className="text-center mb-12">
+            <p
+              className="text-[var(--ea-bronze)] text-xs tracking-[0.28em] uppercase mb-4"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
+            >
+              What Happens Next
+            </p>
+            <h2
+              className="leading-tight"
+              style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 3vw, 2.4rem)", fontWeight: 500 }}
+            >
+              From inquiry to{" "}
+              <span style={{ fontStyle: "italic", fontWeight: 400 }}>itinerary.</span>
+            </h2>
+          </div>
           <StaggerGroup className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <StaggerItem className="interactive-card text-center bg-background/80 px-6 py-8">
-              <div className="w-12 h-12 bg-[var(--ea-terracotta)] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+            <StaggerItem className="interactive-card text-center bg-background px-6 py-8 border border-[var(--ea-border-strong)]">
+              <div className="w-11 h-11 bg-[var(--ea-forest)] text-white rounded-full flex items-center justify-center mx-auto mb-5 text-lg font-medium" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                 1
               </div>
-              <h3 className="mb-2">We Review</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="mb-2" style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.2rem" }}>We Review</h3>
+              <p className="text-muted-foreground text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                 We look at your selected package, destination choices, dates, and travel style.
               </p>
             </StaggerItem>
-            <StaggerItem className="interactive-card text-center bg-background/80 px-6 py-8">
-              <div className="w-12 h-12 bg-[var(--ea-sage)] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+            <StaggerItem className="interactive-card text-center bg-background px-6 py-8 border border-[var(--ea-border-strong)]">
+              <div className="w-11 h-11 bg-[var(--ea-bronze)] text-white rounded-full flex items-center justify-center mx-auto mb-5 text-lg font-medium" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                 2
               </div>
-              <h3 className="mb-2">We Refine</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="mb-2" style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.2rem" }}>We Refine</h3>
+              <p className="text-muted-foreground text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                 We suggest the best routing, pacing, and accommodation style for your trip.
               </p>
             </StaggerItem>
-            <StaggerItem className="interactive-card text-center bg-background/80 px-6 py-8">
-              <div className="w-12 h-12 bg-[var(--ea-golden)] text-foreground rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+            <StaggerItem className="interactive-card text-center bg-background px-6 py-8 border border-[var(--ea-border-strong)]">
+              <div className="w-11 h-11 bg-[var(--ea-gold)] text-[var(--ea-night)] rounded-full flex items-center justify-center mx-auto mb-5 text-lg font-medium" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                 3
               </div>
-              <h3 className="mb-2">We Build</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="mb-2" style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.2rem" }}>We Build</h3>
+              <p className="text-muted-foreground text-sm" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                 You receive a personalized itinerary with room to adjust before confirming.
               </p>
             </StaggerItem>
