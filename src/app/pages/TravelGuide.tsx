@@ -104,14 +104,29 @@ export function TravelGuide() {
   return (
     <div className="pt-20">
       {/* Hero */}
-      <section className="relative h-[52vh] min-h-[420px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[55vh] min-h-[440px] flex items-end overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${travelHero})` }} />
-        <div className="absolute inset-0 bg-black/45" />
-        <Reveal className="relative z-10 text-center text-white px-4">
-          <p className="uppercase tracking-[0.3em] text-sm text-white/75 mb-4">Before You Go</p>
-          <h1 className="text-5xl md:text-6xl mb-4">Travel Tips &amp; Info</h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto font-light">
-            Everything you need to know to prepare for your East African journey — visas, packing, climate, and health.
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+        <Reveal className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 pb-16 text-white">
+          <p
+            className="text-[var(--ea-gold)] text-xs tracking-[0.3em] uppercase mb-4"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
+            Before You Go
+          </p>
+          <h1
+            className="mb-4 leading-tight max-w-3xl"
+            style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.4rem, 5vw, 4rem)", fontWeight: 500 }}
+          >
+            Everything you need to{" "}
+            <span style={{ fontStyle: "italic", fontWeight: 400 }}>travel well.</span>
+          </h1>
+          <p
+            className="text-white/70 max-w-xl leading-relaxed"
+            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 300 }}
+          >
+            Visas, packing lists, climate guides, and health tips — all in one place.
           </p>
         </Reveal>
       </section>
