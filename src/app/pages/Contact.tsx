@@ -1,137 +1,68 @@
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Link } from "react-router";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "../components/animations";
+import contactHero from "../../assets/images/drinkElephant.jpg";
 
 export function Contact() {
   return (
     <div className="pt-20">
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-foreground" />
-        <Reveal className="relative z-10 text-center text-white px-4">
-          <h1 className="text-5xl md:text-6xl mb-4">Contact Us</h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto font-light">
-            We're here to answer your questions and help plan your adventure!
+      <section className="relative flex min-h-[58vh] items-end overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${contactHero})` }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+        <Reveal className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-20 text-white">
+          <p className="mb-4 text-sm uppercase tracking-[0.34em] text-[var(--ea-gold)]">Start Planning</p>
+          <h1 className="mb-5 max-w-4xl text-5xl leading-[0.95] md:text-7xl">Speak with an East Africa travel expert.</h1>
+          <p className="max-w-2xl text-lg font-light leading-relaxed text-white/88 md:text-2xl">
+            Tell us where you want to go, how you like to travel, and what should feel unforgettable. We will help shape the next step.
           </p>
         </Reveal>
       </section>
 
-      <section className="py-20 px-4 max-w-7xl mx-auto">
-        <StaggerGroup className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
-          <StaggerItem className="interactive-card text-center bg-card px-6 py-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--ea-terracotta)]/10 text-[var(--ea-terracotta)] mb-4 rounded-full">
-              <Mail size={28} />
-            </div>
-            <h3 className="text-xl mb-2">Email Us</h3>
-            <p className="text-muted-foreground mb-2">Send us a message anytime</p>
-            <a
-              href="mailto:info@rwandacurated.com"
-              className="text-[var(--ea-terracotta)] hover:underline"
-            >
-              info@D&S Journeys.com
-            </a>
-          </StaggerItem>
+      <section className="px-4 py-20">
+        <div className="mx-auto max-w-7xl">
+          <StaggerGroup className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <StaggerItem className="interactive-card border border-[var(--ea-border-strong)] bg-card p-8 text-center">
+              <Mail className="mx-auto mb-5 text-[var(--ea-bronze)]" size={30} />
+              <h3 className="mb-2 text-2xl">Email</h3>
+              <p className="mb-4 text-muted-foreground">For itinerary requests and detailed planning.</p>
+              <a href="mailto:info@dasamjourneys.com" className="text-[var(--ea-forest)] hover:underline">
+                info@dasamjourneys.com
+              </a>
+            </StaggerItem>
 
-          <StaggerItem className="interactive-card text-center bg-card px-6 py-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--ea-sage)]/10 text-[var(--ea-sage)] mb-4 rounded-full">
-              <Phone size={28} />
-            </div>
-            <h3 className="text-xl mb-2">Call Us</h3>
-            <p className="text-muted-foreground mb-2">Mon-Fri 9am-6pm EAT</p>
-            <a
-              href="tel:+250788123456"
-              className="text-[var(--ea-terracotta)] hover:underline"
-            >
-              +250 788 123 456
-            </a>
-            <br />
-            <a
-              href="tel:+15551234567"
-              className="text-[var(--ea-terracotta)] hover:underline"
-            >
-              +1 (555) 123-4567
-            </a>
-          </StaggerItem>
+            <StaggerItem className="interactive-card border border-[var(--ea-border-strong)] bg-card p-8 text-center">
+              <Phone className="mx-auto mb-5 text-[var(--ea-bronze)]" size={30} />
+              <h3 className="mb-2 text-2xl">Phone & WhatsApp</h3>
+              <p className="mb-4 text-muted-foreground">For quick questions and active trip support.</p>
+              <a href="tel:+250793547972" className="text-[var(--ea-forest)] hover:underline">
+                +250 793 547 972
+              </a>
+            </StaggerItem>
 
-          <StaggerItem className="interactive-card text-center bg-card px-6 py-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--ea-golden)]/20 text-[var(--ea-golden)] mb-4 rounded-full">
-              <MapPin size={28} />
-            </div>
-            <h3 className="text-xl mb-2">Visit Us</h3>
-            <p className="text-muted-foreground">
-              KG 123 Street
-              <br />
-              Kigali, Rwanda
-              <br />
-              East Africa
+            <StaggerItem className="interactive-card border border-[var(--ea-border-strong)] bg-card p-8 text-center">
+              <MapPin className="mx-auto mb-5 text-[var(--ea-bronze)]" size={30} />
+              <h3 className="mb-2 text-2xl">Regional Network</h3>
+              <p className="text-muted-foreground">
+                Kigali, Kampala, Nairobi, Dar es Salaam, Arusha, and Zanzibar.
+              </p>
+            </StaggerItem>
+          </StaggerGroup>
+
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <p className="mb-3 text-sm uppercase tracking-[0.3em] text-[var(--ea-bronze)]">Custom Inquiry</p>
+            <h2 className="mb-5 text-4xl leading-tight md:text-6xl">The fastest way to begin is with your dream route.</h2>
+            <p className="mx-auto mb-9 max-w-2xl text-lg text-muted-foreground">
+              Include preferred destinations, travel month, number of travelers, budget level, special occasion, and any mobility or comfort needs.
             </p>
-          </StaggerItem>
-        </StaggerGroup>
-
-        <Reveal className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl mb-12 text-center">
-            Frequently Asked Questions
-          </h2>
-
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-xl mb-3">When is the best time to visit East Africa?</h3>
-              <p className="text-muted-foreground">
-                The best time depends on your destination and what you want to see. Generally,
-                June to October is ideal for wildlife viewing in Kenya and Tanzania during the
-                Great Migration. For gorilla trekking in Rwanda and Uganda, June to September
-                and December to February offer drier conditions. We can help you choose the
-                perfect time for your specific interests.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl mb-3">How far in advance should I book?</h3>
-              <p className="text-muted-foreground">
-                We recommend booking at least 6-9 months in advance, especially for gorilla
-                trekking permits which are limited and in high demand. However, we can
-                sometimes accommodate shorter notice bookings depending on availability.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl mb-3">Do I need vaccinations or special medications?</h3>
-              <p className="text-muted-foreground">
-                Yes, certain vaccinations are recommended or required for East Africa travel.
-                We provide detailed health information once you book, but we always recommend
-                consulting with a travel medicine specialist at least 8 weeks before your trip.
-                Malaria prophylaxis is recommended for most areas.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl mb-3">What's included in your packages?</h3>
-              <p className="text-muted-foreground">
-                Our packages typically include accommodations, meals as specified, park fees,
-                game drives, airport transfers, and an expert guide. International flights are
-                usually not included but we can help arrange them. Each package details
-                exactly what's included, and we're happy to customize based on your needs.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl mb-3">Is it safe to travel to East Africa?</h3>
-              <p className="text-muted-foreground">
-                Yes, the destinations we operate in are generally very safe for tourists.
-                Rwanda, in particular, is one of the safest countries in Africa. We work with
-                experienced local guides, stay in secure accommodations, and provide 24/7
-                support throughout your journey.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl mb-3">Can you accommodate special dietary requirements?</h3>
-              <p className="text-muted-foreground">
-                Absolutely! We work with lodges and restaurants that can accommodate various
-                dietary needs including vegetarian, vegan, gluten-free, and other restrictions.
-                Just let us know your requirements when booking.
-              </p>
-            </div>
-          </div>
-        </Reveal>
+            <Link
+              to="/custom-trips"
+              className="interactive-button inline-flex items-center justify-center gap-2 bg-[var(--ea-forest)] px-8 py-4 text-sm uppercase tracking-[0.12em] text-white hover:bg-[var(--ea-forest)]/90"
+            >
+              Request Custom Itinerary <ArrowRight size={18} />
+            </Link>
+          </Reveal>
+        </div>
       </section>
     </div>
   );
