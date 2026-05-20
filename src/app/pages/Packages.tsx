@@ -1,214 +1,203 @@
 import { Link } from "react-router";
-import { ArrowRight, Check, Clock, MapPin, Users } from "lucide-react";
+import { ArrowRight, CalendarDays, Check, Gem, MapPin, Star, Users } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { Reveal, StaggerGroup, StaggerItem } from "../components/animations";
 import { destinations, multiCountryPackages } from "../data/travel";
 import toursHero from "../../assets/images/Tours$Safaris.jpg";
-
-// Second image per country (used on the longer-experience card)
 import rwandaImg from "../../assets/images/rwanda.jpg";
-import uganda2Img from "../../assets/images/uganda2.jpg";
-import kenya2Img from "../../assets/images/kenya2.jpg";
-import tanzania2Img from "../../assets/images/tanzania2.jpg";
-import zanzibar2Img from "../../assets/images/zanzibar2.jpg";
+import ugandaImg from "../../assets/images/uganda2.jpg";
+import kenyaImg from "../../assets/images/kenya2.jpg";
+import tanzaniaImg from "../../assets/images/tanzania2.jpg";
+import zanzibarImg from "../../assets/images/zanzibar2.jpg";
 
-const countrySecondImages: Record<string, string> = {
+const countryImages: Record<string, string> = {
   rwanda: rwandaImg,
-  uganda: uganda2Img,
-  kenya: kenya2Img,
-  tanzania: tanzania2Img,
-  zanzibar: zanzibar2Img,
+  uganda: ugandaImg,
+  kenya: kenyaImg,
+  tanzania: tanzaniaImg,
+  zanzibar: zanzibarImg,
 };
+
+function luxuryLevel(style: string, days: number) {
+  if (days >= 7) return "Signature Luxury";
+  if (style.toLowerCase().includes("short")) return "Boutique Luxury";
+  return "Tailor-Made Luxury";
+}
 
 export function Packages() {
   return (
     <div className="pt-20">
-      {/* Hero */}
-      <section className="relative h-[55vh] min-h-[440px] flex items-center justify-center overflow-hidden">
+      <section className="relative flex min-h-[68vh] items-end overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${toursHero})` }} />
-        <div className="absolute inset-0 bg-black/45" />
-        <Reveal className="relative z-10 text-center text-white px-4">
-          <p className="uppercase tracking-[0.3em] text-sm text-white/75 mb-4">Browse by Country</p>
-          <h1 className="text-5xl md:text-6xl mb-4">Tours &amp; Safaris</h1>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto font-light">
-            Every trip is built around a country. Find the destination that speaks to you, then choose the experience that fits your time and style.
+        <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/55 to-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+        <Reveal className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-20 text-white">
+          <p className="mb-4 text-sm uppercase tracking-[0.34em] text-[var(--ea-gold)]">Tours & Safaris</p>
+          <h1 className="mb-5 max-w-4xl text-5xl leading-[0.95] md:text-7xl lg:text-8xl">Luxury safari packages with a private rhythm.</h1>
+          <p className="max-w-2xl text-lg font-light leading-relaxed text-white/88 md:text-2xl">
+            Use these itineraries as elegant starting points. We refine the lodges, routing, pace, and special moments around you.
           </p>
         </Reveal>
       </section>
 
-      {/* Intro */}
-      <Reveal className="py-14 px-4 max-w-6xl mx-auto">
-        <div className="rounded-3xl bg-secondary p-8 text-center">
-          <h2 className="text-3xl mb-4">How Our Trips Work</h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Each package below is a starting point. We use it as a base to build your final itinerary around your dates, group size, and accommodation preferences. Nothing is fixed until you say so.
-          </p>
-        </div>
-      </Reveal>
-
-      {/* Single-country packages by destination */}
-      <section className="pb-16 px-4 max-w-7xl mx-auto">
-        <Reveal className="mb-12">
-          <p className="text-sm uppercase tracking-[0.3em] text-[var(--ea-terracotta)] mb-3">Single-Country Trips</p>
-          <h2 className="text-4xl mb-4">Safaris &amp; Tours by Country</h2>
-          <p className="text-muted-foreground text-lg max-w-3xl">
-            Each destination offers a short stay and a longer experience. Both can be tailored to your exact needs.
-          </p>
-        </Reveal>
-
-        <div className="space-y-20">
-          {destinations.map((destination) => (
-            <div key={destination.slug}>
-              {/* Country header */}
-              <Reveal className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-border">
-                <div>
-                  <p className="text-sm uppercase tracking-[0.25em] text-muted-foreground mb-1">{destination.tagline}</p>
-                  <h3 className="text-4xl">{destination.name}</h3>
-                  <p className="text-muted-foreground mt-2 max-w-xl">{destination.intro}</p>
-                </div>
-                <Link
-                  to={`/destinations/${destination.slug}`}
-                  className="interactive-button inline-flex items-center gap-2 px-5 py-2.5 border border-border hover:bg-secondary transition-colors text-sm flex-shrink-0"
-                >
-                  {destination.name} Guide <ArrowRight size={16} />
-                </Link>
-              </Reveal>
-
-              {/* Package cards */}
-              <StaggerGroup className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                {destination.packageOptions.map((pkg, pkgIndex) => (
-                  <StaggerItem
-                    key={pkg.slug}
-                    className="interactive-card overflow-hidden border border-border bg-card"
-                  >
-                    <div className="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr]">
-                      {/* Image — first card uses original cardImage, second uses local country image */}
-                      <div className="relative min-h-[220px] overflow-hidden">
-                        <ImageWithFallback
-                          src={pkgIndex === 0 ? destination.cardImage : (countrySecondImages[destination.slug] ?? destination.heroImage)}
-                          alt={destination.name}
-                          className="w-full h-full object-cover interactive-media"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                        <div className="absolute left-4 bottom-4 text-white">
-                          <p className="text-xs uppercase tracking-[0.2em] text-white/70 mb-1">{pkg.style}</p>
-                          <p className="text-2xl">{pkg.duration}</p>
-                          <p className="text-lg text-[var(--ea-golden)]">{pkg.startingPrice}</p>
-                        </div>
-                      </div>
-
-                      {/* Content */}
-                      <div className="p-6">
-                        <h4 className="text-2xl mb-2">{pkg.name}</h4>
-                        <p className="text-muted-foreground text-sm mb-4">{pkg.summary}</p>
-
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-5">
-                          <Users size={14} className="text-[var(--ea-terracotta)]" />
-                          <span>{pkg.idealFor}</span>
-                        </div>
-
-                        {/* Itinerary preview */}
-                        <div className="space-y-1.5 mb-5">
-                          {pkg.itinerary.slice(0, 3).map((day) => (
-                            <p key={day} className="text-xs text-muted-foreground leading-relaxed">{day}</p>
-                          ))}
-                          {pkg.itinerary.length > 3 && (
-                            <p className="text-xs text-muted-foreground italic">+ {pkg.itinerary.length - 3} more days</p>
-                          )}
-                        </div>
-
-                        {/* Includes preview */}
-                        <div className="space-y-1 mb-5">
-                          {pkg.includes.slice(0, 3).map((item) => (
-                            <div key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
-                              <Check size={12} className="mt-0.5 text-[var(--ea-sage)] flex-shrink-0" />
-                              <span>{item}</span>
-                            </div>
-                          ))}
-                        </div>
-
-                        <Link
-                          to={`/custom-trips?destination=${encodeURIComponent(destination.name)}&trip=${encodeURIComponent(pkg.name)}`}
-                          className="interactive-button inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--ea-terracotta)] text-white hover:bg-[var(--ea-terracotta)]/90 transition-colors text-sm"
-                        >
-                          Plan This Trip <ArrowRight size={15} />
-                        </Link>
-                      </div>
-                    </div>
-                  </StaggerItem>
-                ))}
-              </StaggerGroup>
+      <Reveal className="bg-[var(--ea-sand)] px-4 py-14">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 md:grid-cols-4">
+          {[
+            ["Duration", "Short stays to 14-day grand safaris"],
+            ["Destination", "Rwanda, Uganda, Kenya, Tanzania, Zanzibar"],
+            ["Luxury Level", "Boutique, signature, and fully bespoke"],
+            ["Pricing", "Transparent starting-from guidance"],
+          ].map(([title, text]) => (
+            <div key={title} className="border border-[var(--ea-border-strong)] bg-background p-5">
+              <p className="mb-2 text-xs uppercase tracking-[0.2em] text-[var(--ea-bronze)]">{title}</p>
+              <p className="text-sm text-muted-foreground">{text}</p>
             </div>
           ))}
         </div>
-      </section>
+      </Reveal>
 
-      {/* Multi-country packages */}
-      <section className="py-16 px-4 bg-secondary/40">
-        <div className="max-w-7xl mx-auto">
-          <Reveal className="mb-12">
-            <p className="text-sm uppercase tracking-[0.3em] text-[var(--ea-terracotta)] mb-3">Multi-Country Trips</p>
-            <h2 className="text-4xl mb-4">Combination Itineraries</h2>
-            <p className="text-muted-foreground text-lg max-w-3xl">
-              These sample itineraries show how safari, primates, and beach time can fit together across multiple countries. All are fully customizable.
+      <section className="px-4 py-20">
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="mb-12 max-w-3xl">
+            <p className="mb-3 text-sm uppercase tracking-[0.3em] text-[var(--ea-bronze)]">Single-Country Safaris</p>
+            <h2 className="mb-4 text-4xl leading-tight md:text-6xl">Refined package cards by destination.</h2>
+            <p className="text-lg text-muted-foreground">
+              Each package shows the essentials travelers need to compare quickly: duration, destination, luxury level, and starting price.
             </p>
           </Reveal>
 
-          <StaggerGroup className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="space-y-16">
+            {destinations.map((destination) => (
+              <div key={destination.slug} id={destination.slug}>
+                <Reveal className="mb-8 flex flex-col gap-4 border-b border-[var(--ea-border-strong)] pb-5 md:flex-row md:items-end md:justify-between">
+                  <div>
+                    <p className="mb-1 text-sm uppercase tracking-[0.25em] text-muted-foreground">{destination.tagline}</p>
+                    <h3 className="text-4xl leading-tight md:text-5xl">{destination.name}</h3>
+                    <p className="mt-2 max-w-2xl text-muted-foreground">{destination.intro}</p>
+                  </div>
+                  <Link
+                    to={`/destinations/${destination.slug}`}
+                    className="interactive-button inline-flex items-center justify-center gap-2 border border-[var(--ea-border-strong)] px-5 py-3 text-sm uppercase tracking-[0.12em] hover:bg-[var(--ea-sand)]"
+                  >
+                    Destination Guide <ArrowRight size={15} />
+                  </Link>
+                </Reveal>
+
+                <StaggerGroup className="grid grid-cols-1 gap-7 xl:grid-cols-2">
+                  {destination.packageOptions.map((pkg, pkgIndex) => {
+                    const level = luxuryLevel(pkg.style, pkg.days);
+                    return (
+                      <StaggerItem key={pkg.slug} className="interactive-card overflow-hidden border border-[var(--ea-border-strong)] bg-card shadow-[var(--premium-shadow)]">
+                        <div className="grid min-h-full grid-cols-1 md:grid-cols-[0.95fr_1.05fr]">
+                          <div className="relative min-h-[280px] overflow-hidden">
+                            <ImageWithFallback
+                              src={pkgIndex === 0 ? countryImages[destination.slug] ?? destination.cardImage : destination.heroImage}
+                              alt={pkg.name}
+                              className="h-full w-full object-cover interactive-media"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/10 to-transparent" />
+                            <div className="absolute left-5 top-5 bg-[var(--ea-gold)] px-3 py-1 text-xs uppercase tracking-[0.16em] text-[var(--ea-night)]">
+                              {level}
+                            </div>
+                            <div className="absolute bottom-5 left-5 right-5 text-white">
+                              <p className="mb-1 text-xs uppercase tracking-[0.22em] text-white/70">{destination.name}</p>
+                              <p className="font-[var(--font-heading)] text-4xl leading-none">{pkg.startingPrice}</p>
+                              <p className="text-sm text-white/75">starting from, per person basis varies by season</p>
+                            </div>
+                          </div>
+
+                          <div className="flex flex-col p-6">
+                            <h4 className="mb-3 text-3xl leading-tight">{pkg.name}</h4>
+                            <p className="mb-5 text-sm leading-relaxed text-muted-foreground">{pkg.summary}</p>
+
+                            <div className="mb-5 grid grid-cols-2 gap-3 text-sm text-muted-foreground">
+                              <span className="inline-flex items-center gap-2"><CalendarDays size={15} className="text-[var(--ea-bronze)]" />{pkg.duration}</span>
+                              <span className="inline-flex items-center gap-2"><MapPin size={15} className="text-[var(--ea-bronze)]" />{destination.name}</span>
+                              <span className="inline-flex items-center gap-2"><Gem size={15} className="text-[var(--ea-bronze)]" />{level}</span>
+                              <span className="inline-flex items-center gap-2"><Users size={15} className="text-[var(--ea-bronze)]" />Private or small group</span>
+                            </div>
+
+                            <div className="mb-5 border-t border-[var(--ea-border-strong)] pt-5">
+                              <p className="mb-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">Experience Preview</p>
+                              <div className="space-y-2">
+                                {pkg.itinerary.slice(0, 3).map((day) => (
+                                  <p key={day} className="text-xs leading-relaxed text-muted-foreground">{day}</p>
+                                ))}
+                              </div>
+                            </div>
+
+                            <div className="mb-6 space-y-2">
+                              {pkg.includes.slice(0, 3).map((item) => (
+                                <div key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
+                                  <Check size={13} className="mt-0.5 shrink-0 text-[var(--ea-forest)]" />
+                                  <span>{item}</span>
+                                </div>
+                              ))}
+                            </div>
+
+                            <div className="mt-auto flex flex-col gap-3 sm:flex-row">
+                              <Link
+                                to={`/custom-trips?destination=${encodeURIComponent(destination.name)}&trip=${encodeURIComponent(pkg.name)}`}
+                                className="interactive-button inline-flex items-center justify-center gap-2 bg-[var(--ea-forest)] px-5 py-3 text-sm uppercase tracking-[0.12em] text-white hover:bg-[var(--ea-forest)]/90"
+                              >
+                                Request This Itinerary <ArrowRight size={15} />
+                              </Link>
+                              <Link
+                                to={`/destinations/${destination.slug}`}
+                                className="interactive-button inline-flex items-center justify-center gap-2 border border-[var(--ea-border-strong)] px-5 py-3 text-sm uppercase tracking-[0.12em] hover:bg-[var(--ea-sand)]"
+                              >
+                                View Details
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      </StaggerItem>
+                    );
+                  })}
+                </StaggerGroup>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[var(--ea-night)] px-4 py-20 text-white">
+        <div className="mx-auto max-w-7xl">
+          <Reveal className="mb-12 max-w-3xl">
+            <p className="mb-3 text-sm uppercase tracking-[0.3em] text-[var(--ea-gold)]">Multi-Country Safaris</p>
+            <h2 className="mb-4 text-4xl leading-tight md:text-6xl">Flagship East Africa combinations.</h2>
+            <p className="text-lg text-white/72">
+              For travelers who want gorillas, classic safari, and coast in one journey, these routes show how the region can flow beautifully.
+            </p>
+          </Reveal>
+
+          <StaggerGroup className="grid grid-cols-1 gap-7 lg:grid-cols-3">
             {multiCountryPackages.map((pkg) => (
-              <StaggerItem
-                key={pkg.slug}
-                className="interactive-card overflow-hidden border border-border bg-card"
-              >
+              <StaggerItem key={pkg.slug} className="interactive-card overflow-hidden border border-white/10 bg-white/[0.06]">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <ImageWithFallback
-                    src={pkg.image}
-                    alt={pkg.name}
-                    className="w-full h-full object-cover interactive-media"
-                  />
+                  <ImageWithFallback src={pkg.image} alt={pkg.name} className="h-full w-full object-cover interactive-media" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-                  <div className="absolute left-5 bottom-5 right-5 text-white">
-                    <h3 className="text-2xl mb-1">{pkg.name}</h3>
-                    <p className="text-white/80 text-sm">{pkg.summary}</p>
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <p className="mb-2 text-xs uppercase tracking-[0.2em] text-[var(--ea-gold)]">Fully Customizable</p>
+                    <h3 className="text-3xl leading-tight">{pkg.name}</h3>
                   </div>
                 </div>
 
                 <div className="p-6">
-                  <div className="space-y-2 text-sm text-muted-foreground mb-5">
-                    <div className="flex items-center gap-2">
-                      <Clock size={14} className="text-[var(--ea-terracotta)]" />
-                      <span>{pkg.duration}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin size={14} className="text-[var(--ea-terracotta)]" />
-                      <span>{pkg.destinations.join(" · ")}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Users size={14} className="text-[var(--ea-terracotta)]" />
-                      <span>{pkg.idealFor}</span>
-                    </div>
+                  <div className="mb-5 grid grid-cols-1 gap-3 text-sm text-white/70">
+                    <span className="inline-flex items-center gap-2"><CalendarDays size={15} className="text-[var(--ea-gold)]" />{pkg.duration}</span>
+                    <span className="inline-flex items-center gap-2"><MapPin size={15} className="text-[var(--ea-gold)]" />{pkg.destinations.join(" + ")}</span>
+                    <span className="inline-flex items-center gap-2"><Star size={15} className="text-[var(--ea-gold)]" />Signature Luxury</span>
                   </div>
-
-                  <div className="mb-5 border-t border-border pt-5">
-                    <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground mb-3">Sample Itinerary</p>
-                    <ul className="space-y-1.5 text-sm text-muted-foreground">
-                      {pkg.itinerary.slice(0, 4).map((day) => (
-                        <li key={day}>{day}</li>
-                      ))}
-                      {pkg.itinerary.length > 4 && (
-                        <li className="italic text-xs">+ more available on inquiry</li>
-                      )}
-                    </ul>
-                  </div>
-
-                  <div className="flex items-center justify-between gap-4 border-t border-border pt-5">
+                  <p className="mb-6 text-sm leading-relaxed text-white/72">{pkg.summary}</p>
+                  <div className="flex items-center justify-between gap-4 border-t border-white/10 pt-5">
                     <div>
-                      <p className="text-xs text-muted-foreground">Starting from</p>
-                      <p className="text-2xl text-[var(--ea-terracotta)]">{pkg.startingPrice}</p>
+                      <p className="text-xs uppercase tracking-[0.16em] text-white/50">Starting from</p>
+                      <p className="font-[var(--font-heading)] text-3xl text-[var(--ea-gold)]">{pkg.startingPrice}</p>
                     </div>
                     <Link
                       to={`/custom-trips?destination=${encodeURIComponent(pkg.destinations.join(", "))}&trip=${encodeURIComponent(pkg.name)}`}
-                      className="interactive-button inline-flex items-center gap-2 px-4 py-2.5 bg-[var(--ea-terracotta)] text-white hover:bg-[var(--ea-terracotta)]/90 transition-colors text-sm"
+                      className="interactive-button inline-flex items-center gap-2 bg-white px-4 py-2 text-sm text-[var(--ea-night)] hover:bg-[var(--ea-gold)]"
                     >
                       Customize <ArrowRight size={15} />
                     </Link>
@@ -220,18 +209,17 @@ export function Packages() {
         </div>
       </section>
 
-      {/* CTA */}
-      <Reveal className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl mb-4">Ready to Build Your Trip?</h2>
-          <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
-            Every package above is a starting point. Share your dates and preferences and we will put together a tailored itinerary.
+      <Reveal className="px-4 py-20">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="mb-5 text-4xl leading-tight md:text-6xl">Need something more personal?</h2>
+          <p className="mx-auto mb-9 max-w-2xl text-lg text-muted-foreground">
+            Share your preferred luxury level, dates, mobility needs, celebration plans, and dream wildlife moments. We will turn a sample package into a proper itinerary.
           </p>
           <Link
             to="/custom-trips"
-            className="interactive-button inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--ea-terracotta)] text-white hover:bg-[var(--ea-terracotta)]/90 transition-colors"
+            className="interactive-button inline-flex items-center justify-center gap-2 bg-[var(--ea-forest)] px-8 py-4 text-sm uppercase tracking-[0.12em] text-white hover:bg-[var(--ea-forest)]/90"
           >
-            Start Planning <ArrowRight size={18} />
+            Request Custom Itinerary <ArrowRight size={18} />
           </Link>
         </div>
       </Reveal>
